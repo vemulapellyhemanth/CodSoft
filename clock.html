@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Clock</title>
+<style>
+    html,body{
+        background-color: white;
+        place-items: center;
+        height: 100%;
+        display:grid;
+        background-color: black;
+    }
+    .wrapper{
+      
+       height: 100px;
+       margin-bottom: 400px;
+       width: 360px;
+       border-radius: 10px;
+       background: linear-gradient(to right,rgb(73, 171, 73),rgb(195, 197, 56),rgb(204, 36, 223));
+        animation: animate 1.5s linear infinite;
+      }
+    .wrapper .display{
+      position: absolute;
+      top: 50%;
+      left:50%;
+      
+     transform: translate(-50%,-50%);
+     background-color: black;
+     height: 85px;
+     width:350px;
+     text-align: center;
+    }
+    .wrapper .display #time{
+      font-size: 40px;
+      color:white;
+      line-height: 85px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      background: linear-gradient(to right,rgb(73, 171, 73),rgb(195, 197, 56),rgb(204, 36, 223));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 1.5s linear infinite;
+    }
+    @keyframes animate {
+      100%{
+        filter: hue-rotate(360deg)
+      }
+      
+    }
+    #di{
+      background: linear-gradient(to right,rgb(227, 220, 10),rgb(14, 14, 104),rgb(190, 17, 181));
+      animation: animate 1.5s linear infinite;
+    }
+  
+</style>
+
+</head>
+<body>
+  <div id="di">
+  <font size="6" color="white"> DIGITAL CLOCK</font></div>
+  <div class="wrapper" >
+    <div class="display">
+      <div id="time">00:00:00 PM</div>
+    </div>
+   
+  </div>
+
+  <script>
+
+function updateClock() {
+  var now = new Date();
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+  var day_night = "AM"; 
+ 
+
+  
+  if (hours >= 12) {
+    day_night = "PM";
+    hours = hours - 12;
+  }
+
+  
+  hours = (hours < 10) ? '0' + hours : hours;
+  minutes = (minutes < 10) ? '0' + minutes : minutes;
+  seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+  var timeString = hours + ':' + minutes + ':' + seconds + ' ' + day_night;
+
+  document.getElementById('time').textContent = timeString; 
+
+}
+setInterval(updateClock, 1000);
+  
+  
+  </script>
+</body>
+</html>
